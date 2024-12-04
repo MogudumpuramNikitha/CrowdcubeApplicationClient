@@ -1,12 +1,8 @@
 import App from "../../App";
+import Home from "../../Pages/Home/Home";
 import Login from "../Auth/Login";
 import Registration from "../Auth/Registration";
-
 import Erro from "../ErroPage/Erro";
-// import ForgotPassword from "../ForgotPassword/ForgotPassword";
-// import MainHome from "../Home/MainHome";
-// import PrivateRoute from "../PrivateRoute/PrivateRoute";
-// import UpdateProfile from "../UpdateProfile/UpdateProfile";
 
 const RoutersItems = [
   {
@@ -14,10 +10,10 @@ const RoutersItems = [
     element: <App></App>,
     errorElement: <Erro></Erro>,
     children: [
-      // {
-      //   path: "/",
-      //   element: <MainHome></MainHome>,
-      // },
+      {
+        path: "/",
+        element: <Home />,
+      },
 
       // {
       //   path: "/donation-capaings",

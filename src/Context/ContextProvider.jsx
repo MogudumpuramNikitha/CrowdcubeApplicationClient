@@ -11,7 +11,7 @@ import { auth, googleProvider } from "../Component/Auth/FirebaseAuth";
 export const AppContext = createContext();
 
 const ContextProvider = ({ children }) => {
-  // user Stt
+  // user State
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || null
   );

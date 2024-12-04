@@ -30,31 +30,30 @@ const Login = () => {
     loginUser(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        // console.log("User data:", user);
-
-        // Fetch the user information (displayName and photoURL)
         const userData = {
           uid: user.uid,
           email: user.email,
           displayName: user.displayName || "No Name",
           photoURL: user.photoURL || "https://via.placeholder.com/150",
         };
-
-        // Set user data in context
         setUser(userData);
-
-        // Store user token in localStorage (for session management)
         localStorage.setItem("authToken", user.accessToken);
-
-        // Navigate to the desired route or home page
         toast.success("Login successful!");
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // console.error("Login error:", errorCode, errorMessage);
-        toast.error("Invalid email or password. Please try again.");
+        // Handle errors based on Firebase error codes
+        const errorMessage = error.code;
+
+        if (errorMessage === "auth/user-not-found") {
+          toast.error("User not found. Please check the email.");
+        } else if (errorMessage === "auth/wrong-password") {
+          toast.error("Incorrect password. Please try again.");
+        } else if (errorMessage === "auth/invalid-email") {
+          toast.error("Invalid email format.");
+        } else {
+          toast.error("Login failed. Please try again.");
+        }
       });
   };
 
@@ -64,7 +63,6 @@ const Login = () => {
       toast.success("Google login successful!");
       navigate(from, { replace: true });
     } catch (error) {
-      // console.error(error.message);
       toast.error("Google login failed!");
     }
   };
@@ -113,7 +111,7 @@ const Login = () => {
           </div>
 
           {/* Forgot Password Link */}
-          <div className="text-right">
+          {/* <div className="text-right">
             <Link
               to="/forgot-password"
               state={{ email }}
@@ -121,7 +119,7 @@ const Login = () => {
             >
               Forgot Password?
             </Link>
-          </div>
+          </div> */}
 
           {/* Login Button */}
           <button

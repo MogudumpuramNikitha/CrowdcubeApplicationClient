@@ -1,11 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../../Context/ContextProvider";
 
 const NavBar = () => {
-  const { user, logout } = useContext(AppContext);
+  const { user, logoutUser } = useContext(AppContext);
+  const [showDropdown, setShowDropdown] = useState(false);
 
-  console.log(user);
+  // log out the user
+  const handleLogout = () => {
+    logoutUser()
+      .then(() => {
+        toast.success("Logged out successfully!");
+      })
+      .catch((error) => {
+        toast.error("Failed to log out. Please try again.");
+      });
+  };
 
   const navRouter = (
     <>
@@ -52,17 +62,35 @@ const NavBar = () => {
           </>
         ) : (
           <>
-            <img
-              src={user?.photoURL}
-              alt="User Avatar"
-              className="w-8 h-8 rounded-full"
-              title={user?.displayName}
-            />
-            <button onClick={logout} className="hover:text-gray-300">
-              Log out
-            </button>
+            <div
+              onClick={() => setShowDropdown(!showDropdown)}
+              className="cursor-pointer relative"
+            >
+              <img
+                src={user?.photoURL || "https://via.placeholder.com/150"}
+                alt="User Avatar"
+                className="w-8 h-8 rounded-full"
+                title={user?.displayName}
+              />
+            </div>
           </>
         )}
+
+        {/* Dropdown */}
+        {!user ||
+          (showDropdown && (
+            <div className="absolute right-10 top-[2.7rem] mt-2 w-40 bg-gray-400 text-white border rounded-lg shadow-lg">
+              <h3 className="font-extrabold w-full text-left px-4 py-2">
+                {user?.displayName}
+              </h3>
+              <button
+                onClick={handleLogout}
+                className="font-extrabold w-full text-left px-4 py-2 hover:bg-black"
+              >
+                Logout
+              </button>
+            </div>
+          ))}
       </div>
     </>
   );
@@ -94,7 +122,7 @@ const NavBar = () => {
             {navRouter}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-xl"> Crowdcube Application</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navRouter}</ul>
