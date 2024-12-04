@@ -1,8 +1,10 @@
 import App from "../../App";
+import AddCampaign from "../../Pages/AddCampaign/AddCampaign";
 import Home from "../../Pages/Home/Home";
 import Login from "../Auth/Login";
 import Registration from "../Auth/Registration";
 import Erro from "../ErroPage/Erro";
+import PrivateRoute from "../ProtectedRoute/ProtectedRoute";
 
 const RoutersItems = [
   {
@@ -13,6 +15,14 @@ const RoutersItems = [
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/add-campaign",
+        element: (
+          <PrivateRoute>
+            <AddCampaign />
+          </PrivateRoute>
+        ),
       },
 
       // {
