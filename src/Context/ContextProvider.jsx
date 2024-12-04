@@ -11,10 +11,14 @@ import { auth, googleProvider } from "../Component/Auth/FirebaseAuth";
 export const AppContext = createContext();
 
 const ContextProvider = ({ children }) => {
+  // api url
+  const apiUrl = "http://localhost:5001";
+
   // user State
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || null
   );
+
   // singup or Register user
   const RegisterUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -55,6 +59,7 @@ const ContextProvider = ({ children }) => {
   }, []);
 
   const contextApiValue = {
+    apiUrl,
     user,
     setUser,
     RegisterUser,

@@ -3,16 +3,21 @@ import { AppContext } from "../../Context/ContextProvider";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const AddCampaign = () => {
-  const { user } = useContext(AppContext); // Get user info from Context
+  const { user, apiUrl } = useContext(AppContext);
+  const [startDate, setStartDate] = useState(new Date());
+
   const [formData, setFormData] = useState({
     image: "",
     title: "",
     type: "personal issue",
     description: "",
     minDonation: "",
-    deadline: "",
+    deadline: startDate.toISOString().slice(0, 10),
   });
 
   const navigate = useNavigate();
@@ -23,10 +28,18 @@ const AddCampaign = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  // Handle date change for Deadline
+  const handleDateChange = (date) => {
+    setStartDate(date);
+    setFormData({
+      ...formData,
+      deadline: date.toISOString().slice(0, 10),
+    });
+  };
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     // Basic validation
     if (
       !formData.image ||
@@ -40,16 +53,15 @@ const AddCampaign = () => {
     }
 
     try {
-      // Submit the form data to the database
-      const response = await axios.post("http://localhost:5000/api/campaigns", {
+      const response = await axios.post(`${apiUrl}/api/campaigns`, {
         ...formData,
         userEmail: user.email,
         userName: user.displayName,
       });
 
-      if (response.status === 201) {
+      if (response.data.insertedId) {
         toast.success("Campaign added successfully!");
-        navigate("/"); // Redirect to home page
+        navigate("/");
       }
     } catch (error) {
       console.error(error);
@@ -149,13 +161,12 @@ const AddCampaign = () => {
           <label className="block text-gray-700 font-medium mb-2">
             Deadline
           </label>
-          <input
-            type="date"
-            name="deadline"
-            value={formData.deadline}
-            onChange={handleInputChange}
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          <DatePicker
+            selected={startDate}
+            onChange={handleDateChange}
+            className="block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
+            dateFormat="yyyy-MM-dd"
           />
         </div>
 

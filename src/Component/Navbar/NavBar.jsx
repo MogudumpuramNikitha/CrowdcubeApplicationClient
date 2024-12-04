@@ -79,7 +79,7 @@ const NavBar = () => {
         {/* Dropdown */}
         {!user ||
           (showDropdown && (
-            <div className="absolute right-10 top-[2.7rem] mt-2 w-40 bg-gray-400 text-white border rounded-lg shadow-lg">
+            <div className="absolute z-[100] right-10 top-[2.7rem] mt-2 w-40 bg-gray-400 text-white border rounded-lg shadow-lg">
               <h3 className="font-extrabold w-full text-left px-4 py-2">
                 {user?.displayName}
               </h3>

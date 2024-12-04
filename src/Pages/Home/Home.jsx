@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
 import Hero from "./Hero";
+import { AppContext } from "../../Context/ContextProvider";
+import { Link } from "react-router-dom";
 
 const Home = () => {
+  const { apiUrl } = useContext(AppContext);
+
   const [campaigns, setCampaigns] = useState([]);
 
   useEffect(() => {
-    // Fetch running campaigns from the database
     axios
-      .get("/api/campaigns?limit=6&status=running") // Adjust API URL as needed
+      .get(`${apiUrl}/api/campaigns?limit=6&status=running`)
       .then((response) => {
         setCampaigns(response.data);
       })
@@ -31,7 +34,7 @@ const Home = () => {
           Running Campaigns
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4">
-          {/* {campaigns?.length > 0 ? (
+          {campaigns?.length > 0 ? (
             campaigns.map((campaign) => (
               <div
                 key={campaign._id}
@@ -54,7 +57,7 @@ const Home = () => {
             <p className="text-center col-span-3">
               No running campaigns found.
             </p>
-          )} */}
+          )}
         </div>
       </section>
 
