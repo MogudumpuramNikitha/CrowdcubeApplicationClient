@@ -4,6 +4,7 @@ import { AppContext } from "../../Context/ContextProvider";
 
 const NavBar = () => {
   const { user, logout } = useContext(AppContext);
+
   console.log(user);
 
   const navRouter = (
@@ -18,25 +19,21 @@ const NavBar = () => {
           All Campaign
         </Link>
       </li>
-      {user && (
-        <>
-          <li>
-            <Link to="/add-campaign" className="hover:text-gray-300">
-              Add New Campaign
-            </Link>
-          </li>
-          <li>
-            <Link to="/my-campaign" className="hover:text-gray-300">
-              My Campaign
-            </Link>
-          </li>
-          <li>
-            <Link to="/my-donations" className="hover:text-gray-300">
-              My Donations
-            </Link>
-          </li>{" "}
-        </>
-      )}
+      <li>
+        <Link to="/add-campaign" className="hover:text-gray-300">
+          Add New Campaign
+        </Link>
+      </li>
+      <li>
+        <Link to="/my-campaign" className="hover:text-gray-300">
+          My Campaign
+        </Link>
+      </li>
+      <li>
+        <Link to="/my-donations" className="hover:text-gray-300">
+          My Donations
+        </Link>
+      </li>
     </>
   );
 
@@ -56,10 +53,10 @@ const NavBar = () => {
         ) : (
           <>
             <img
-              src={user.photoURL}
+              src={user?.photoURL}
               alt="User Avatar"
               className="w-8 h-8 rounded-full"
-              title={user.displayName}
+              title={user?.displayName}
             />
             <button onClick={logout} className="hover:text-gray-300">
               Log out
@@ -71,7 +68,7 @@ const NavBar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 px-10">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

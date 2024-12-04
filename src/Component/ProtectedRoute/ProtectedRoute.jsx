@@ -1,15 +1,18 @@
 import React, { useContext } from "react";
-import { Navigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import { Navigate, useLocation } from "react-router-dom";
+import { AppContext } from "../../Context/ContextApi";
 
-const ProtectedRoute = ({ children }) => {
-  const { user } = useContext(AuthContext);
+// Mock authentication status (replace this with your actual auth logic)
 
-  if (!user) {
-    return <Navigate to="/login" />;
+const PrivateRoute = ({ children }) => {
+  const location = useLocation();
+  const { user } = useContext(AppContext);
+
+  if (user) {
+    return children;
   }
 
-  return children;
+  return <Navigate to="/login" state={{ from: location }} replace />;
 };
 
-export default ProtectedRoute;
+export default PrivateRoute;
