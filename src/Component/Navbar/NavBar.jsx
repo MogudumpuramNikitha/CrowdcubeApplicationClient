@@ -1,12 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { FiMoon, FiSun } from "react-icons/fi"; // Import icons
 import { AppContext } from "../../Context/ContextProvider";
 
 const NavBar = () => {
-  const { user, logoutUser } = useContext(AppContext);
+  const { user, logoutUser, theme, toggleTheme } = useContext(AppContext);
   const [showDropdown, setShowDropdown] = useState(false);
 
-  // log out the user
+  // Log out the user
   const handleLogout = () => {
     logoutUser()
       .then(() => {
@@ -17,6 +18,11 @@ const NavBar = () => {
       });
   };
 
+  // Apply the theme class to the root element
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+  }, [theme]);
+
   const navRouter = (
     <>
       <li>
@@ -25,22 +31,22 @@ const NavBar = () => {
         </Link>
       </li>
       <li>
-        <Link to="/all-campaign" className="hover:text-gray-300">
+        <Link to="/campaigns" className="hover:text-gray-300">
           All Campaign
         </Link>
       </li>
       <li>
-        <Link to="/add-campaign" className="hover:text-gray-300">
+        <Link to="/addCampaign" className="hover:text-gray-300">
           Add New Campaign
         </Link>
       </li>
       <li>
-        <Link to="/my-campaign" className="hover:text-gray-300">
+        <Link to="/myCampaign" className="hover:text-gray-300">
           My Campaign
         </Link>
       </li>
       <li>
-        <Link to="/my-donations" className="hover:text-gray-300">
+        <Link to="/myDonations" className="hover:text-gray-300">
           My Donations
         </Link>
       </li>
@@ -49,8 +55,20 @@ const NavBar = () => {
 
   const userInfo = (
     <>
-      {/* User Authentication */}
       <div className="flex items-center space-x-4">
+        {/* Theme Toggle Button */}
+        <button
+          onClick={toggleTheme}
+          className="p-2 rounded-full bg-gray-200 dark:bg-gray-800"
+          aria-label="Toggle Theme"
+        >
+          {theme === "light" ? (
+            <FiMoon className="text-gray-800" size={20} />
+          ) : (
+            <FiSun className="text-yellow-400" size={20} />
+          )}
+        </button>
+
         {!user ? (
           <>
             <Link to="/login" className="hover:text-gray-300">
@@ -67,7 +85,7 @@ const NavBar = () => {
               className="cursor-pointer relative"
             >
               <img
-                src={user?.photoURL || "https://via.placeholder.com/150"}
+                src={user.photoURL || "https://via.placeholder.com/150"}
                 alt="User Avatar"
                 className="w-8 h-8 rounded-full"
                 title={user?.displayName}
@@ -77,26 +95,25 @@ const NavBar = () => {
         )}
 
         {/* Dropdown */}
-        {!user ||
-          (showDropdown && (
-            <div className="absolute z-[100] right-10 top-[2.7rem] mt-2 w-40 bg-gray-400 text-white border rounded-lg shadow-lg">
-              <h3 className="font-extrabold w-full text-left px-4 py-2">
-                {user?.displayName}
-              </h3>
-              <button
-                onClick={handleLogout}
-                className="font-extrabold w-full text-left px-4 py-2 hover:bg-black"
-              >
-                Logout
-              </button>
-            </div>
-          ))}
+        {showDropdown && user && (
+          <div className="absolute z-[100] right-10 top-[2.7rem] mt-2 w-40 bg-gray-400 text-white border rounded-lg shadow-lg">
+            <h3 className="font-extrabold w-full text-left px-4 py-2">
+              {user?.displayName}
+            </h3>
+            <button
+              onClick={handleLogout}
+              className="font-extrabold w-full text-left px-4 py-2 hover:bg-black"
+            >
+              Logout
+            </button>
+          </div>
+        )}
       </div>
     </>
   );
 
   return (
-    <div className="navbar bg-base-100 px-10">
+    <div className="navbar bg-base-100 px-10 dark:bg-gray-900">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -122,7 +139,9 @@ const NavBar = () => {
             {navRouter}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl"> Crowdcube Application</a>
+        <Link to="/" className="btn btn-ghost text-xl">
+          Crowdcube Application
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navRouter}</ul>

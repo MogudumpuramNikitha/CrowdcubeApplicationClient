@@ -6,12 +6,12 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
-    <>
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 dark:text-white transition duration-300">
       <ToastContainer />
       <NavBar />
       <Outlet />
       <Footer />
-    </>
+    </div>
   );
 }
 

@@ -1,6 +1,11 @@
 import App from "../../App";
 import AddCampaign from "../../Pages/AddCampaign/AddCampaign";
+import AllCampaign from "../../Pages/AllCampaign/AllCampaign";
+import CampaignDetails from "../../Pages/CampaignDetails/CampaignDetails";
 import Home from "../../Pages/Home/Home";
+import MyCampaign from "../../Pages/MyCampaign/MyCampaign";
+import MyDonations from "../../Pages/MyDonations/MyDonations";
+import UpdateCampaign from "../../Pages/UpdateCampaign/UpdateCampaign";
 import Login from "../Auth/Login";
 import Registration from "../Auth/Registration";
 import Erro from "../ErroPage/Erro";
@@ -17,10 +22,50 @@ const RoutersItems = [
         element: <Home />,
       },
       {
-        path: "/add-campaign",
+        path: "/addCampaign",
         element: (
           <PrivateRoute>
             <AddCampaign />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/campaign/:id",
+        element: (
+          <PrivateRoute>
+            <CampaignDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/campaigns",
+        element: (
+          <PrivateRoute>
+            <AllCampaign />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myCampaign",
+        element: (
+          <PrivateRoute>
+            <MyCampaign />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/updateCampaign/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateCampaign />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myDonations",
+        element: (
+          <PrivateRoute>
+            <MyDonations />
           </PrivateRoute>
         ),
       },
@@ -50,19 +95,6 @@ const RoutersItems = [
         path: "/register",
         element: <Registration />,
       },
-      // {
-      //   path: "/dashboard",
-      //   element: (
-      //     <PrivateRoute>
-      //       <Dashboard />
-      //     </PrivateRoute>
-      //   ),
-      // },
-
-      // {
-      //   path: "/forgot-password",
-      //   element: <ForgotPassword />,
-      // },
     ],
   },
 ];

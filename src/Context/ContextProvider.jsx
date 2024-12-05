@@ -19,6 +19,15 @@ const ContextProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("user")) || null
   );
 
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  // Handle Theme Toggle
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
+
   // singup or Register user
   const RegisterUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -61,6 +70,8 @@ const ContextProvider = ({ children }) => {
   const contextApiValue = {
     apiUrl,
     user,
+    theme,
+    toggleTheme,
     setUser,
     RegisterUser,
     loginUser,
