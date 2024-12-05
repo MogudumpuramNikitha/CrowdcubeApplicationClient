@@ -8,7 +8,14 @@ import "swiper/css/autoplay";
 
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
+import { Typewriter } from "react-simple-typewriter";
+
 const Hero = () => {
+  <Typewriter
+    words={["Welcome to Crowdcube!", "Donate Now!", "Help a Cause!"]}
+    loop={true}
+    cursor
+  />;
   return (
     <section>
       <Swiper

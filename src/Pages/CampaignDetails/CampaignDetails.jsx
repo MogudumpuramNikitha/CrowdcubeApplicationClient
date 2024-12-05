@@ -26,11 +26,21 @@ const CampaignDetails = () => {
       });
   }, [id, apiUrl]);
 
+  // Check if the campaign deadline is over
+  const isDeadlineOver = campaign
+    ? new Date(campaign.deadline) < new Date()
+    : false;
+
   // Handle donation
   const handleDonate = () => {
     if (!user) {
       toast.error("Please log in to donate.");
       navigate("/login");
+      return;
+    }
+
+    if (isDeadlineOver) {
+      toast.error("The campaign deadline is over. You cannot donate.");
       return;
     }
 
@@ -70,8 +80,14 @@ const CampaignDetails = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-6">
-      <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+    <div
+      className={`container mx-auto px-4 py-6 dark:bg-gray-900 dark:text-white bg-white text-gray-900"
+      `}
+    >
+      <div
+        className={`shadow-lg rounded-lg overflow-hidden dark:bg-gray-800 bg-white
+        `}
+      >
         <img
           src={
             campaign?.image ||
@@ -81,31 +97,41 @@ const CampaignDetails = () => {
           className="w-full h-64 object-cover"
         />
         <div className="p-6">
-          <h1 className="text-3xl font-bold text-gray-800 mb-4">
-            {campaign.title}
-          </h1>
-          <p className="text-gray-600 mb-4">{campaign.description}</p>
-          <p className="text-lg text-gray-700 mb-2">
+          <h1 className="text-3xl font-bold mb-4">{campaign.title}</h1>
+          <p className="mb-4">{campaign.description}</p>
+          <p className="text-lg mb-2">
             <span className="font-semibold">Type:</span> {campaign.type}
           </p>
-          <p className="text-lg text-gray-700 mb-2">
+          <p className="text-lg mb-2">
             <span className="font-semibold">Minimum Donation:</span> $
             {campaign.minDonation}
           </p>
-          <p className="text-lg text-gray-700 mb-2">
+          <p className="text-lg mb-2">
             <span className="font-semibold">Deadline:</span>{" "}
             {new Date(campaign.deadline).toLocaleDateString()}
           </p>
-          <p className="text-lg text-gray-700 mb-2">
+          <p className="text-lg mb-2">
             <span className="font-semibold">Organizer:</span>{" "}
             {campaign.userName} ({campaign.userEmail})
           </p>
+
           <button
             onClick={handleDonate}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded mt-6 w-full"
+            disabled={isDeadlineOver}
+            className={`py-2 px-6 rounded mt-6 w-full font-bold ${
+              isDeadlineOver
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-500 hover:bg-blue-600 text-white"
+            }`}
           >
-            Donate
+            {isDeadlineOver ? "Donation Closed" : "Donate"}
           </button>
+
+          {isDeadlineOver && (
+            <p className="mt-4 text-center text-red-500 font-semibold">
+              The campaign deadline is over. Donations are no longer accepted.
+            </p>
+          )}
         </div>
       </div>
     </div>

@@ -7,13 +7,17 @@ const AllCampaign = () => {
   const { apiUrl } = useContext(AppContext);
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [sortOrder, setSortOrder] = useState("desc"); // Default to descending
 
-  // Fetch all campaigns from the API
+  // Fetch all campaigns from the API and sort them by default in descending order
   useEffect(() => {
     axios
       .get(`${apiUrl}/api/campaigns`)
       .then((response) => {
-        setCampaigns(response.data);
+        const sortedCampaigns = response.data.sort(
+          (a, b) => b.minDonation - a.minDonation
+        );
+        setCampaigns(sortedCampaigns);
         setLoading(false);
       })
       .catch((error) => {
@@ -21,6 +25,18 @@ const AllCampaign = () => {
         setLoading(false);
       });
   }, [apiUrl]);
+
+  // Toggle between ascending and descending order
+  const toggleSortOrder = () => {
+    const newSortOrder = sortOrder === "asc" ? "desc" : "asc";
+    const sortedCampaigns = [...campaigns].sort((a, b) =>
+      newSortOrder === "asc"
+        ? a.minDonation - b.minDonation
+        : b.minDonation - a.minDonation
+    );
+    setCampaigns(sortedCampaigns);
+    setSortOrder(newSortOrder);
+  };
 
   if (loading) {
     return (
@@ -36,9 +52,19 @@ const AllCampaign = () => {
     );
   }
 
+  console.log(campaigns);
+
   return (
     <div className="container mx-auto px-4 py-6">
       <h1 className="text-3xl font-bold text-center mb-6">All Campaigns</h1>
+      <div className="flex justify-end mb-4">
+        <button
+          onClick={toggleSortOrder}
+          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+        >
+          Sort by {sortOrder === "asc" ? "Descending" : "Ascending"}
+        </button>
+      </div>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
           <thead>
