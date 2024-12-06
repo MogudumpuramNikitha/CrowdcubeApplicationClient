@@ -24,8 +24,6 @@ const MyDonations = () => {
     }
   }, [apiUrl, user]);
 
-  console.log(donations);
-
   return (
     <div className="max-w-7xl mx-auto py-10 px-5">
       <h1 className="text-3xl font-bold text-center mb-6">My Donations</h1>
@@ -36,12 +34,12 @@ const MyDonations = () => {
           {donations.map((donation) => (
             <div
               key={donation._id}
-              className="bg-white shadow-lg rounded-lg p-6"
+              className="bg-white dark:bg-gray-800  shadow-lg rounded-lg p-6"
             >
               <h2 className="text-xl font-bold mb-2">
                 {donation.campaignName}
               </h2>
-              <p className="text-gray-600 mb-2">
+              <p className="text-gray-600 dark:text-white mb-2">
                 Donation Amount: ${donation.amount}
               </p>
             </div>

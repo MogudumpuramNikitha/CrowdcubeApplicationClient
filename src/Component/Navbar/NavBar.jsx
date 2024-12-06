@@ -32,22 +32,22 @@ const NavBar = () => {
         </Link>
       </li>
       <li>
-        <Link to="/campaigns" className="hover:text-gray-300">
+        <Link to="/campaigns" className="hover:text-gray-100">
           All Campaign
         </Link>
       </li>
       <li>
-        <Link to="/addCampaign" className="hover:text-gray-300">
+        <Link to="/addCampaign" className="hover:text-gray-100">
           Add New Campaign
         </Link>
       </li>
       <li>
-        <Link to="/myCampaign" className="hover:text-gray-300">
+        <Link to="/myCampaign" className="hover:text-gray-100">
           My Campaign
         </Link>
       </li>
       <li>
-        <Link to="/myDonations" className="hover:text-gray-300">
+        <Link to="/myDonations" className="hover:text-gray-100">
           My Donations
         </Link>
       </li>
@@ -133,14 +133,15 @@ const NavBar = () => {
               />
             </svg>
           </div>
+          {/* small device  */}
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[100] mt-3 w-52 p-2 shadow dark:bg-gray-500"
           >
             {navRouter}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost text-xl">
+        <Link to="/" className="btn btn-ghost text-sm md:text-xl">
           <Typewriter
             words={[
               "Welcome to Crowdcube Application!",

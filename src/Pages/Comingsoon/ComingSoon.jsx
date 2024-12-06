@@ -14,19 +14,27 @@ const ComingSoon = () => {
         {/* Countdown Timer */}
         <div className="countdown-timer flex justify-center gap-8 text-4xl font-bold mb-12">
           <div className="countdown-item">
-            <div className="time bg-gray-700 rounded-lg px-6 py-4">12</div>
+            <div className="time bg-gray-700 rounded-lg px-3 md:px-6 py-4">
+              12
+            </div>
             <span className="text-sm text-gray-400">Days</span>
           </div>
           <div className="countdown-item">
-            <div className="time bg-gray-700 rounded-lg px-6 py-4">08</div>
+            <div className="time bg-gray-700 rounded-lg px-3 md:px-6 py-4">
+              08
+            </div>
             <span className="text-sm text-gray-400">Hours</span>
           </div>
           <div className="countdown-item">
-            <div className="time bg-gray-700 rounded-lg px-6 py-4">45</div>
+            <div className="time bg-gray-700 rounded-lg px-3 md:px-6 py-4">
+              45
+            </div>
             <span className="text-sm text-gray-400">Minutes</span>
           </div>
           <div className="countdown-item">
-            <div className="time bg-gray-700 rounded-lg px-6 py-4">20</div>
+            <div className="time bg-gray-700 rounded-lg px-3 md:px-6 py-4">
+              20
+            </div>
             <span className="text-sm text-gray-400">Seconds</span>
           </div>
         </div>

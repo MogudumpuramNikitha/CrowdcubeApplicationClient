@@ -2,14 +2,17 @@ import { FaInstagram, FaXTwitter, FaFacebookF } from "react-icons/fa6";
 import { AiOutlineHome } from "react-icons/ai";
 import { MdPhoneInTalk } from "react-icons/md";
 import { IoIosMail } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <section className="bg-[#011C52] FooterSection py-10 px-5 md:px-20 lg:px-40 font-montserrat">
+    <section className="dark:bg-[#011c52a1] bg-[#011c52]  FooterSection py-10 px-5 md:px-20 lg:px-40 font-montserrat">
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10">
         {/* First Column */}
         <div className="col-span-2">
-          <img src="/assets/Logo.png" alt="footer logo image" />
+          <Link to="/" className="btn btn-ghost text-sm md:text-xl">
+            <h2 className="text-white">Crowdcube Application</h2>
+          </Link>
           <p className="text-white pt-4 text-sm md:text-base">
             A crowdfunding website is a platform where people can raise money
             for different projects, ideas, or causes by inviting others to
@@ -66,11 +69,11 @@ const Footer = () => {
             </li>
             <li className="mb-2 flex items-center">
               <MdPhoneInTalk className="text-xl mr-3" />
-              +88 01717-000111
+              +88 01602555023
             </li>
             <li className="mb-2 flex items-center">
               <IoIosMail className="text-xl mr-3" />
-              info@tojofoundation.com
+              info@crowdcubefoundation.com
             </li>
           </ul>
         </div>
