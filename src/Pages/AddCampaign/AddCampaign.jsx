@@ -22,13 +22,11 @@ const AddCampaign = () => {
 
   const navigate = useNavigate();
 
-  // Handle input change
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle date change for Deadline
   const handleDateChange = (date) => {
     setStartDate(date);
     setFormData({
@@ -37,10 +35,8 @@ const AddCampaign = () => {
     });
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Basic validation
     if (
       !formData.image ||
       !formData.title ||
@@ -70,12 +66,14 @@ const AddCampaign = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto my-10 p-6 bg-white shadow-lg rounded-lg">
-      <h1 className="text-3xl font-bold text-center mb-6">Add New Campaign</h1>
+    <div className="max-w-3xl mx-auto my-10 p-6 bg-gray-50 dark:bg-gray-800 shadow-lg rounded-lg">
+      <h1 className="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-gray-200">
+        Add New Campaign
+      </h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Image URL */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">
+          <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
             Image URL
           </label>
           <input
@@ -84,14 +82,14 @@ const AddCampaign = () => {
             value={formData.image}
             onChange={handleInputChange}
             placeholder="Enter image URL"
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
             required
           />
         </div>
 
         {/* Campaign Title */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">
+          <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
             Campaign Title
           </label>
           <input
@@ -100,21 +98,21 @@ const AddCampaign = () => {
             value={formData.title}
             onChange={handleInputChange}
             placeholder="Enter campaign title"
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
             required
           />
         </div>
 
         {/* Campaign Type */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">
+          <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
             Campaign Type
           </label>
           <select
             name="type"
             value={formData.type}
             onChange={handleInputChange}
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
             required
           >
             <option value="personal issue">Personal Issue</option>
@@ -126,7 +124,7 @@ const AddCampaign = () => {
 
         {/* Description */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">
+          <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
             Description
           </label>
           <textarea
@@ -134,7 +132,7 @@ const AddCampaign = () => {
             value={formData.description}
             onChange={handleInputChange}
             placeholder="Enter campaign description"
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
             rows="4"
             required
           ></textarea>
@@ -142,7 +140,7 @@ const AddCampaign = () => {
 
         {/* Minimum Donation */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">
+          <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
             Minimum Donation Amount
           </label>
           <input
@@ -151,20 +149,20 @@ const AddCampaign = () => {
             value={formData.minDonation}
             onChange={handleInputChange}
             placeholder="Enter minimum donation amount"
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
             required
           />
         </div>
 
         {/* Deadline */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">
+          <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
             Deadline
           </label>
           <DatePicker
             selected={startDate}
             onChange={handleDateChange}
-            className="block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
             required
             dateFormat="yyyy-MM-dd"
           />
@@ -172,34 +170,34 @@ const AddCampaign = () => {
 
         {/* User Email (Read-Only) */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">
+          <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
             User Email
           </label>
           <input
             type="email"
             value={user.email}
             readOnly
-            className="w-full px-4 py-2 border bg-gray-100 rounded-lg cursor-not-allowed"
+            className="w-full px-4 py-2 border bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg cursor-not-allowed"
           />
         </div>
 
         {/* User Name (Read-Only) */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">
+          <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
             User Name
           </label>
           <input
             type="text"
             value={user.displayName}
             readOnly
-            className="w-full px-4 py-2 border bg-gray-100 rounded-lg cursor-not-allowed"
+            className="w-full px-4 py-2 border bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg cursor-not-allowed"
           />
         </div>
 
         {/* Add Button */}
         <button
           type="submit"
-          className="w-full py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition duration-300"
+          className="w-full rounded-lg px-4 py-2   bg-gradient-to-r from-[#031741] via-[#03d2fc] to-[#022d33] text-white  text-center font-extrabold transition-colors duration-300 whitespace-nowrap"
         >
           Add Campaign
         </button>

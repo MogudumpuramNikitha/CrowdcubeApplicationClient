@@ -52,24 +52,22 @@ const AllCampaign = () => {
     );
   }
 
-  console.log(campaigns);
-
   return (
     <div className="container mx-auto px-4 py-6">
       <h1 className="text-3xl font-bold text-center mb-6">All Campaigns</h1>
       <div className="flex justify-end mb-4">
         <button
           onClick={toggleSortOrder}
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+          className="rounded-lg px-4 py-2   bg-gradient-to-r from-[#031741] via-[#03d2fc] to-[#022d33] text-white  text-center font-extrabold transition-colors duration-300 whitespace-nowrap"
         >
           Sort by {sortOrder === "asc" ? "Descending" : "Ascending"}
         </button>
       </div>
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+        <table className="min-w-full bg-white dark:bg-gray-700 dark:text-white shadow-md rounded-lg overflow-hidden">
           <thead>
             <tr>
-              <th className="py-3 px-4 bg-gray-200 text-gray-600 text-left text-sm font-semibold uppercase">
+              <th className="py-3 px-4 bg-gray-200 text-gray-800 text-left text-sm font-semibold uppercase ">
                 Title
               </th>
               <th className="py-3 px-4 bg-gray-200 text-gray-600 text-left text-sm font-semibold uppercase">
@@ -88,19 +86,26 @@ const AllCampaign = () => {
           </thead>
           <tbody>
             {campaigns.map((campaign) => (
-              <tr key={campaign._id} className="border-b hover:bg-gray-100">
-                <td className="py-3 px-4 text-gray-700">{campaign.title}</td>
-                <td className="py-3 px-4 text-gray-700">{campaign.type}</td>
-                <td className="py-3 px-4 text-gray-700">
+              <tr
+                key={campaign._id}
+                className="border-b hover:bg-gray-100 dark:hover:bg-gray-500 "
+              >
+                <td className="py-3 px-4 text-gray-700 dark:text-white">
+                  {campaign.title}
+                </td>
+                <td className="py-3 px-4 text-gray-700 dark:text-white">
+                  {campaign.type}
+                </td>
+                <td className="py-3 px-4 text-gray-700 dark:text-white">
                   ${campaign.minDonation}
                 </td>
-                <td className="py-3 px-4 text-gray-700">
+                <td className="py-3 px-4 text-gray-700 dark:text-white">
                   {new Date(campaign.deadline).toLocaleDateString()}
                 </td>
                 <td className="py-3 px-4">
                   <Link
                     to={`/campaign/${campaign._id}`}
-                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded whitespace-nowrap"
+                    className="rounded-lg px-4 py-2   bg-gradient-to-r from-[#031741] via-[#03d2fc] to-[#022d33] text-white  text-center font-extrabold transition-colors duration-300 whitespace-nowrap"
                   >
                     See More
                   </Link>

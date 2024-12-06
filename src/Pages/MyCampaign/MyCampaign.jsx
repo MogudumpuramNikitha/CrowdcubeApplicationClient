@@ -5,6 +5,8 @@ import axios from "axios";
 import { AppContext } from "../../Context/ContextProvider";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 const MySwal = withReactContent(Swal);
 
@@ -63,7 +65,7 @@ const MyCampaign = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center h-screen dark:text-gray-200">
         Loading...
       </div>
     );
@@ -71,52 +73,59 @@ const MyCampaign = () => {
 
   if (campaigns.length === 0) {
     return (
-      <div className="text-center mt-10 text-gray-500">
+      <div className="text-center mt-10 text-gray-500 dark:text-gray-400">
         You have not added any campaigns.
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container mx-auto px-4 py-6 dark:bg-gray-800 dark:text-gray-200 bg-white text-gray-900">
       <h1 className="text-3xl font-bold text-center mb-6">My Campaigns</h1>
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+        <table className="min-w-full bg-white dark:bg-gray-700 shadow-md rounded-lg overflow-hidden">
           <thead>
             <tr>
-              <th className="py-3 px-4 bg-gray-200 text-gray-600 text-left text-sm font-semibold uppercase">
+              <th className="py-3 px-4 bg-gray-200 dark:bg-gray-600 text-gray-600 dark:text-gray-200 text-left text-sm font-semibold uppercase">
                 Title
               </th>
-              <th className="py-3 px-4 bg-gray-200 text-gray-600 text-left text-sm font-semibold uppercase">
+              <th className="py-3 px-4 bg-gray-200 dark:bg-gray-600 text-gray-600 dark:text-gray-200 text-left text-sm font-semibold uppercase">
                 Type
               </th>
-              <th className="py-3 px-4 bg-gray-200 text-gray-600 text-left text-sm font-semibold uppercase">
+              <th className="py-3 px-4 bg-gray-200 dark:bg-gray-600 text-gray-600 dark:text-gray-200 text-left text-sm font-semibold uppercase">
                 Min Donation
               </th>
-              <th className="py-3 px-4 bg-gray-200 text-gray-600 text-left text-sm font-semibold uppercase">
+              <th className="py-3 px-4 bg-gray-200 dark:bg-gray-600 text-gray-600 dark:text-gray-200 text-left text-sm font-semibold uppercase">
                 Actions
               </th>
             </tr>
           </thead>
           <tbody>
             {campaigns.map((campaign) => (
-              <tr key={campaign._id} className="border-b hover:bg-gray-100">
-                <td className="py-3 px-4 text-gray-700">{campaign.title}</td>
-                <td className="py-3 px-4 text-gray-700">{campaign.type}</td>
-                <td className="py-3 px-4 text-gray-700">
+              <tr
+                key={campaign._id}
+                className="border-b hover:bg-gray-100 dark:hover:bg-gray-600"
+              >
+                <td className="py-3 px-4 text-gray-700 dark:text-gray-300">
+                  {campaign.title}
+                </td>
+                <td className="py-3 px-4 text-gray-700 dark:text-gray-300">
+                  {campaign.type}
+                </td>
+                <td className="py-3 px-4 text-gray-700 dark:text-gray-300">
                   ${campaign.minDonation}
                 </td>
                 <td className="py-3 px-4 flex gap-4">
                   <Link to={`/updateCampaign/${campaign._id}`}>
                     <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded">
-                      Update
+                      <FaEdit />
                     </button>
                   </Link>
                   <button
                     onClick={() => handleDelete(campaign._id)}
                     className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded"
                   >
-                    Delete
+                    <MdDelete />
                   </button>
                 </td>
               </tr>
