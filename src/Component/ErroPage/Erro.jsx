@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Erro = () => {
   return (
     <>
-      <div className="erro_page_div h-screen">
+      <div className="erro_page_div h-screen   bg-gray-700 text-white shadow-md">
         <div className="container text-center">
           <div className="erro_text_div font-montserrat text-white">
             <strong className="text-[10rem] lg:text-[17rem]">404</strong>
