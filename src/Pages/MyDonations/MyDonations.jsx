@@ -17,7 +17,7 @@ const MyDonations = () => {
           setLoading(false);
         })
         .catch((error) => {
-          console.error("Error fetching donations:", error);
+          //console.error("Error fetching donations:", error);
           toast.error("Could not fetch your donations.");
           setLoading(false);
         });

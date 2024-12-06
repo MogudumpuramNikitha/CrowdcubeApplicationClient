@@ -47,7 +47,6 @@ const Registration = () => {
       RegisterUser(email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          // console.log("User data:", user);
 
           updateProfile(user, {
             displayName: name,
@@ -65,12 +64,9 @@ const Registration = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          // console.log(errorMessage);
-          // ..
         });
       toast.success("Registration successful!");
       navigate("/");
-      // console.log(password, photoUrl, email, name);
     } else {
       toast.error("Registration failed. Please check your input.");
     }
@@ -82,7 +78,6 @@ const Registration = () => {
       toast.success("Google account registered successfully!");
       navigate("/");
     } catch (error) {
-      // console.error(error.message);
       toast.error("Google registration failed!");
     }
   };

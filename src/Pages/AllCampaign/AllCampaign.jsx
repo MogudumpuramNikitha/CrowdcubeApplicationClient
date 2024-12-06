@@ -21,12 +21,12 @@ const AllCampaign = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching campaigns:", error);
+        //console.error("Error fetching campaigns:", error);
         setLoading(false);
       });
   }, [apiUrl]);
 
-  console.log(campaigns);
+  //console.log(campaigns);
 
   // Toggle between ascending and descending order
   const toggleSortOrder = () => {

@@ -10,6 +10,8 @@ import OurImpact from "./OurImpact";
 import RightPlace from "./RightPlace";
 import SuccessStoris from "./SuccessStoris";
 
+import { Fade } from "react-awesome-reveal";
+
 const Home = () => {
   const { apiUrl } = useContext(AppContext);
   const [campaigns, setCampaigns] = useState([]);
@@ -22,11 +24,11 @@ const Home = () => {
         setCampaigns(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching campaigns:", error);
+        //console.error("Error fetching campaigns:", error);
       });
   }, [apiUrl]);
 
-  console.log(campaigns);
+  //console.log(campaigns);
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 dark:text-white transition duration-300">
@@ -34,7 +36,9 @@ const Home = () => {
       <Hero />
 
       {/* Running Campaign Section */}
+
       <RunningCampaigns campaigns={campaigns}></RunningCampaigns>
+
       {/* Our Impact */}
       <OurImpact />
       {/* You're in the Right Place Section */}

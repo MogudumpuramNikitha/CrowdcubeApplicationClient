@@ -36,7 +36,7 @@ const UpdateCampaign = () => {
         setStartDate(new Date(campaign.deadline));
       })
       .catch((error) => {
-        console.error("Error fetching campaign data:", error);
+        //console.error("Error fetching campaign data:", error);
         toast.error("Failed to load campaign data.");
       });
   }, [id, apiUrl]);
@@ -65,7 +65,7 @@ const UpdateCampaign = () => {
       toast.success("Campaign updated successfully!");
       navigate("/myCampaign");
     } catch (error) {
-      console.error("Error updating campaign:", error);
+      //console.error("Error updating campaign:", error);
       toast.error("Failed to update campaign. Please try again.");
     }
   };

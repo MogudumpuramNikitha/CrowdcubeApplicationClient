@@ -60,7 +60,7 @@ const AddCampaign = () => {
         navigate("/");
       }
     } catch (error) {
-      console.error(error);
+      //console.error(error);
       toast.error("Failed to add campaign. Please try again.");
     }
   };

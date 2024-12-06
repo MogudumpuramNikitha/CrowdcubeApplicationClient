@@ -25,7 +25,7 @@ const MyCampaign = () => {
           setLoading(false);
         })
         .catch((error) => {
-          console.error("Error fetching campaigns:", error);
+          //console.error("Error fetching campaigns:", error);
           setLoading(false);
           toast.error("Could not fetch your campaigns.");
         });
@@ -56,7 +56,7 @@ const MyCampaign = () => {
             });
           })
           .catch((error) => {
-            console.error("Error deleting campaign:", error);
+            //console.error("Error deleting campaign:", error);
             toast.error("Failed to delete the campaign.");
           });
       }

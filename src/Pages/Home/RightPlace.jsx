@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { Fade } from "react-awesome-reveal";
 import { Link } from "react-router-dom";
 
 const RightPlace = () => {
@@ -57,49 +58,59 @@ const RightPlace = () => {
           {/* Steps Flow */}
           <div className="steps-flow grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Step 01 */}
-            <div className="step-card text-center bg-white dark:bg-gray-700 dark:text-white shadow-md rounded-lg p-6">
-              <div className="step-number text-2xl font-bold text-white-600mb-4">
-                1
+            <Fade direction="down" delay={1 * 200}>
+              <div className="step-card text-center bg-white dark:bg-gray-700 dark:text-white shadow-md rounded-lg p-6">
+                <div className="step-number text-2xl font-bold text-white-600mb-4">
+                  1
+                </div>
+                <h3 className="text-xl font-semibold mb-2">
+                  Create Your Project
+                </h3>
+                <p className="text-gray-600 dark:text-white">
+                  Set up your project, tell your story, and set your target.
+                </p>
               </div>
-              <h3 className="text-xl font-semibold mb-2">
-                Create Your Project
-              </h3>
-              <p className="text-gray-600 dark:text-white">
-                Set up your project, tell your story, and set your target.
-              </p>
-            </div>
+            </Fade>
             {/* Step 02 */}
-            <div className="step-card text-center bg-white dark:bg-gray-700 dark:text-white shadow-md rounded-lg p-6">
-              <div className="step-number text-2xl font-bold text-white-600 mb-4">
-                2
+            <Fade direction="up" delay={2 * 200}>
+              <div className="step-card text-center bg-white dark:bg-gray-700 dark:text-white shadow-md rounded-lg p-6">
+                <div className="step-number text-2xl font-bold text-white-600 mb-4">
+                  2
+                </div>
+                <h3 className="text-xl font-semibold mb-2">
+                  Collect Donations
+                </h3>
+                <p className="text-gray-600 dark:text-white">
+                  Receive donations or offer rewards for crowdfunding support.
+                </p>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Collect Donations</h3>
-              <p className="text-gray-600 dark:text-white">
-                Receive donations or offer rewards for crowdfunding support.
-              </p>
-            </div>
+            </Fade>
             {/* Step 03 */}
-            <div className="step-card text-center bg-white dark:bg-gray-700 dark:text-white shadow-md rounded-lg p-6">
-              <div className="step-number text-2xl font-bold text-white-600mb-4">
-                3
+            <Fade direction="down" delay={3 * 200}>
+              <div className="step-card text-center bg-white dark:bg-gray-700 dark:text-white shadow-md rounded-lg p-6">
+                <div className="step-number text-2xl font-bold text-white-600mb-4">
+                  3
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Spread the Word</h3>
+                <p className="text-gray-600 dark:text-white">
+                  Share your project to reach potential backers and supporters.
+                </p>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Spread the Word</h3>
-              <p className="text-gray-600 dark:text-white">
-                Share your project to reach potential backers and supporters.
-              </p>
-            </div>
+            </Fade>
             {/* Step 04 */}
-            <div className="step-card text-center bg-white dark:bg-gray-700 dark:text-white shadow-md rounded-lg p-6">
-              <div className="step-number text-2xl font-bold text-white-600mb-4">
-                4
+            <Fade direction="up" delay={4 * 200}>
+              <div className="step-card text-center bg-white dark:bg-gray-700 dark:text-white shadow-md rounded-lg p-6">
+                <div className="step-number text-2xl font-bold text-white-600mb-4">
+                  4
+                </div>
+                <h3 className="text-xl font-semibold mb-2">
+                  Apply for Match Funding
+                </h3>
+                <p className="text-gray-600 dark:text-white">
+                  Boost your total with grants and extra funding opportunities.
+                </p>
               </div>
-              <h3 className="text-xl font-semibold mb-2">
-                Apply for Match Funding
-              </h3>
-              <p className="text-gray-600 dark:text-white">
-                Boost your total with grants and extra funding opportunities.
-              </p>
-            </div>
+            </Fade>
           </div>
 
           {/* CTA Button */}

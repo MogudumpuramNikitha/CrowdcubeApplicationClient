@@ -20,7 +20,7 @@ const CampaignDetails = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching campaign details:", error);
+        //console.error("Error fetching campaign details:", error);
         setLoading(false);
         toast.error("Campaign details could not be fetched.");
       });
@@ -58,7 +58,7 @@ const CampaignDetails = () => {
         toast.success("Donation successful!");
       })
       .catch((error) => {
-        console.error("Error donating:", error);
+        //console.error("Error donating:", error);
         toast.error("Donation failed! Please try again.");
       });
   };
