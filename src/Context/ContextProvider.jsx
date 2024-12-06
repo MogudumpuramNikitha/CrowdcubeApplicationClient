@@ -12,7 +12,8 @@ export const AppContext = createContext();
 
 const ContextProvider = ({ children }) => {
   // api url
-  const apiUrl = "http://localhost:5001";
+  // const apiUrl = "http://localhost:5001";
+  const apiUrl = "https://crowdcube-application-server.vercel.app";
 
   // user State
   const [user, setUser] = useState(

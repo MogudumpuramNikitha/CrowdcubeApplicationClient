@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FiMoon, FiSun } from "react-icons/fi"; // Import icons
 import { AppContext } from "../../Context/ContextProvider";
+import { Typewriter } from "react-simple-typewriter";
 
 const NavBar = () => {
   const { user, logoutUser, theme, toggleTheme } = useContext(AppContext);
@@ -140,7 +141,15 @@ const NavBar = () => {
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost text-xl">
-          Crowdcube Application
+          <Typewriter
+            words={[
+              "Welcome to Crowdcube Application!",
+              "Donate Now!",
+              "Help a Cause!",
+            ]}
+            loop={true}
+            cursor
+          />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
