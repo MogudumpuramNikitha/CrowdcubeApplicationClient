@@ -26,6 +26,8 @@ const AllCampaign = () => {
       });
   }, [apiUrl]);
 
+  console.log(campaigns);
+
   // Toggle between ascending and descending order
   const toggleSortOrder = () => {
     const newSortOrder = sortOrder === "asc" ? "desc" : "asc";
@@ -68,6 +70,9 @@ const AllCampaign = () => {
           <thead>
             <tr>
               <th className="py-3 px-4 bg-gray-200 text-gray-800 text-left text-sm font-semibold uppercase ">
+                index
+              </th>
+              <th className="py-3 px-4 bg-gray-200 text-gray-800 text-left text-sm font-semibold uppercase ">
                 Title
               </th>
               <th className="py-3 px-4 bg-gray-200 text-gray-600 text-left text-sm font-semibold uppercase">
@@ -85,11 +90,14 @@ const AllCampaign = () => {
             </tr>
           </thead>
           <tbody>
-            {campaigns.map((campaign) => (
+            {campaigns.map((campaign, i) => (
               <tr
                 key={campaign._id}
                 className="border-b hover:bg-gray-100 dark:hover:bg-gray-500 "
               >
+                <td className="py-3 px-4 text-gray-700 dark:text-white">
+                  {i + 1}
+                </td>
                 <td className="py-3 px-4 text-gray-700 dark:text-white">
                   {campaign.title}
                 </td>

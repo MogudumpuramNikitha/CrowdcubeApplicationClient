@@ -8,7 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const UpdateCampaign = () => {
   const { id } = useParams(); // Get the campaign ID from URL params
-  const { user, apiUrl } = useContext(AppContext);
+  const { user, apiUrl, theme } = useContext(AppContext); // Assume theme is provided in AppContext
   const navigate = useNavigate();
   const [startDate, setStartDate] = useState(new Date());
   const [formData, setFormData] = useState({
@@ -59,7 +59,6 @@ const UpdateCampaign = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
 
     try {
       await axios.put(`${apiUrl}/api/campaigns/${id}`, formData);
@@ -72,12 +71,20 @@ const UpdateCampaign = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto my-10 p-6 bg-white shadow-lg rounded-lg">
+    <div
+      className={`max-w-3xl mx-auto my-10 p-6 shadow-lg rounded-lg ${
+        theme === "dark" ? "bg-gray-800 text-white" : "bg-white text-gray-800"
+      }`}
+    >
       <h1 className="text-3xl font-bold text-center mb-6">Update Campaign</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Image URL */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">
+          <label
+            className={`block font-medium mb-2 ${
+              theme === "dark" ? "text-gray-300" : "text-gray-700"
+            }`}
+          >
             Image URL
           </label>
           <input
@@ -85,14 +92,22 @@ const UpdateCampaign = () => {
             name="image"
             value={formData.image}
             onChange={handleInputChange}
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
+              theme === "dark"
+                ? "bg-gray-700 text-white border-gray-600 focus:ring-blue-300"
+                : "bg-white text-gray-800 border-gray-300 focus:ring-blue-500"
+            }`}
             required
           />
         </div>
 
         {/* Campaign Title */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">
+          <label
+            className={`block font-medium mb-2 ${
+              theme === "dark" ? "text-gray-300" : "text-gray-700"
+            }`}
+          >
             Campaign Title
           </label>
           <input
@@ -100,21 +115,33 @@ const UpdateCampaign = () => {
             name="title"
             value={formData.title}
             onChange={handleInputChange}
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
+              theme === "dark"
+                ? "bg-gray-700 text-white border-gray-600 focus:ring-blue-300"
+                : "bg-white text-gray-800 border-gray-300 focus:ring-blue-500"
+            }`}
             required
           />
         </div>
 
         {/* Campaign Type */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">
+          <label
+            className={`block font-medium mb-2 ${
+              theme === "dark" ? "text-gray-300" : "text-gray-700"
+            }`}
+          >
             Campaign Type
           </label>
           <select
             name="type"
             value={formData.type}
             onChange={handleInputChange}
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
+              theme === "dark"
+                ? "bg-gray-700 text-white border-gray-600 focus:ring-blue-300"
+                : "bg-white text-gray-800 border-gray-300 focus:ring-blue-500"
+            }`}
             required
           >
             <option value="personal issue">Personal Issue</option>
@@ -126,14 +153,22 @@ const UpdateCampaign = () => {
 
         {/* Description */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">
+          <label
+            className={`block font-medium mb-2 ${
+              theme === "dark" ? "text-gray-300" : "text-gray-700"
+            }`}
+          >
             Description
           </label>
           <textarea
             name="description"
             value={formData.description}
             onChange={handleInputChange}
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
+              theme === "dark"
+                ? "bg-gray-700 text-white border-gray-600 focus:ring-blue-300"
+                : "bg-white text-gray-800 border-gray-300 focus:ring-blue-500"
+            }`}
             rows="4"
             required
           ></textarea>
@@ -141,7 +176,11 @@ const UpdateCampaign = () => {
 
         {/* Minimum Donation */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">
+          <label
+            className={`block font-medium mb-2 ${
+              theme === "dark" ? "text-gray-300" : "text-gray-700"
+            }`}
+          >
             Minimum Donation Amount
           </label>
           <input
@@ -149,53 +188,81 @@ const UpdateCampaign = () => {
             name="minDonation"
             value={formData.minDonation}
             onChange={handleInputChange}
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
+              theme === "dark"
+                ? "bg-gray-700 text-white border-gray-600 focus:ring-blue-300"
+                : "bg-white text-gray-800 border-gray-300 focus:ring-blue-500"
+            }`}
             required
           />
         </div>
 
         {/* Deadline */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">
+          <label
+            className={`block font-medium mb-2 ${
+              theme === "dark" ? "text-gray-300" : "text-gray-700"
+            }`}
+          >
             Deadline
           </label>
           <DatePicker
             selected={startDate}
             onChange={handleDateChange}
-            className="block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className={`block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
+              theme === "dark"
+                ? "bg-gray-700 text-white border-gray-600 focus:ring-blue-300"
+                : "bg-white text-gray-800 border-gray-300 focus:ring-blue-500"
+            }`}
             required
           />
         </div>
 
         {/* Read-Only Fields */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">
+          <label
+            className={`block font-medium mb-2 ${
+              theme === "dark" ? "text-gray-300" : "text-gray-700"
+            }`}
+          >
             User Email
           </label>
           <input
             type="email"
             value={user.email}
             readOnly
-            className="w-full px-4 py-2 border bg-gray-100 rounded-lg"
+            className={`w-full px-4 py-2 border rounded-lg ${
+              theme === "dark"
+                ? "bg-gray-700 text-white border-gray-600"
+                : "bg-gray-100 text-gray-800"
+            }`}
           />
         </div>
 
         <div>
-          <label className="block text-gray-700 font-medium mb-2">
+          <label
+            className={`block font-medium mb-2 ${
+              theme === "dark" ? "text-gray-300" : "text-gray-700"
+            }`}
+          >
             User Name
           </label>
           <input
             type="text"
             value={user.displayName}
             readOnly
-            className="w-full px-4 py-2 border bg-gray-100 rounded-lg"
+            className={`w-full px-4 py-2 border rounded-lg ${
+              theme === "dark"
+                ? "bg-gray-700 text-white border-gray-600"
+                : "bg-gray-100 text-gray-800"
+            }`}
           />
         </div>
 
         {/* Update Button */}
         <button
           type="submit"
-          className="w-full py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition duration-300"
+          className="w-full rounded-lg px-4 py-3   bg-gradient-to-r from-[#031741] via-[#03d2fc] to-[#022d33] text-white  text-center font-extrabold transition-colors duration-300 whitespace-nowrap"
         >
           Update Campaign
         </button>
