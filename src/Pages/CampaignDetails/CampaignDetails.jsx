@@ -103,25 +103,29 @@ const CampaignDetails = () => {
             <span className="font-semibold">Type:</span> {campaign.type}
           </p>
           <p className="text-lg mb-2">
-            <span className="font-semibold">Minimum Donation:</span> $
-            {campaign.minDonation}
+            <span className="font-semibold">Minimum Donation:</span>{" "}
+            <span className="dark:text-green-400  text-gray-700 font-extrabold ml-3">
+              ${campaign.minDonation}
+            </span>
           </p>
           <p className="text-lg mb-2">
             <span className="font-semibold">Deadline:</span>{" "}
             {new Date(campaign.deadline).toLocaleDateString()}
           </p>
           <p className="text-lg mb-2">
-            <span className="font-semibold">Organizer:</span>{" "}
-            {campaign.userName} ({campaign.userEmail})
+            <span className="font-semibold">Owner:</span> {campaign.userName}
+          </p>
+          <p className="text-lg mb-2">
+            <span className="font-semibold"> Email:</span> {campaign.userEmail}
           </p>
 
           <button
             onClick={handleDonate}
             disabled={isDeadlineOver}
-            className={`py-2 px-6 rounded mt-6 w-full font-bold ${
+            className={`py-2 px-6 rounded-lg mt-6 w-full font-extrabold ${
               isDeadlineOver
                 ? "bg-gray-400 cursor-not-allowed"
-                : "bg-blue-500 hover:bg-blue-600 text-white"
+                : "bg-gradient-to-r from-[#031741] via-[#03d2fc] to-[#022d33] text-white"
             }`}
           >
             {isDeadlineOver ? "Donation Closed" : "Donate"}

@@ -2,6 +2,7 @@ import App from "../../App";
 import AddCampaign from "../../Pages/AddCampaign/AddCampaign";
 import AllCampaign from "../../Pages/AllCampaign/AllCampaign";
 import CampaignDetails from "../../Pages/CampaignDetails/CampaignDetails";
+import ComingSoon from "../../Pages/Comingsoon/ComingSoon";
 import Home from "../../Pages/Home/Home";
 import MyCampaign from "../../Pages/MyCampaign/MyCampaign";
 import MyDonations from "../../Pages/MyDonations/MyDonations";
@@ -68,6 +69,10 @@ const RoutersItems = [
             <MyDonations />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/comingsoon",
+        element: <ComingSoon />,
       },
 
       // {

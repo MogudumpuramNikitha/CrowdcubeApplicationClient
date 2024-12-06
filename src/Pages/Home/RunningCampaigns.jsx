@@ -41,14 +41,16 @@ const RunningCampaigns = ({ campaigns }) => {
                   {new Date(campaign.deadline).toLocaleDateString()}
                 </p>
                 <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 h-10">
-                  <span className="font-semibold">Minimum Donation:</span> $
-                  {campaign.minDonation}
+                  <span className="font-semibold">Minimum Donation:</span>{" "}
+                  <span className="dark:text-green-400  text-gray-700 font-extrabold ml-3">
+                    ${campaign.minDonation}
+                  </span>
                 </p>
 
                 {/* CTA Button */}
                 <Link
                   to={`/campaign/${campaign._id}`}
-                  className="block text-center py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition-colors duration-300"
+                  className="block  rounded-lg px-4 py-2   bg-gradient-to-r from-[#031741] via-[#03d2fc] to-[#022d33] text-white  text-center font-extrabold transition-colors duration-300"
                 >
                   See More
                 </Link>

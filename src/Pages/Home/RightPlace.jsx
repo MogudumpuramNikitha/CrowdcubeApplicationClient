@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 
 const RightPlace = () => {
   const videoRef = useRef(null); // Reference to the video element
@@ -36,7 +37,7 @@ const RightPlace = () => {
               {/* Play Button */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <button
-                  onClick={handlePlay} // Call handlePlay when clicked
+                  onClick={handlePlay}
                   className="bg-white rounded-full p-4 shadow-md hover:shadow-lg transition"
                   aria-label="Play Video"
                 >
@@ -55,9 +56,9 @@ const RightPlace = () => {
 
           {/* Steps Flow */}
           <div className="steps-flow grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Step 1 */}
+            {/* Step 01 */}
             <div className="step-card text-center bg-white dark:bg-gray-700 dark:text-white shadow-md rounded-lg p-6">
-              <div className="step-number text-2xl font-bold text-blue-600 mb-4">
+              <div className="step-number text-2xl font-bold text-white-600mb-4">
                 1
               </div>
               <h3 className="text-xl font-semibold mb-2">
@@ -67,9 +68,9 @@ const RightPlace = () => {
                 Set up your project, tell your story, and set your target.
               </p>
             </div>
-            {/* Step 2 */}
+            {/* Step 02 */}
             <div className="step-card text-center bg-white dark:bg-gray-700 dark:text-white shadow-md rounded-lg p-6">
-              <div className="step-number text-2xl font-bold text-blue-600 mb-4">
+              <div className="step-number text-2xl font-bold text-white-600 mb-4">
                 2
               </div>
               <h3 className="text-xl font-semibold mb-2">Collect Donations</h3>
@@ -77,9 +78,9 @@ const RightPlace = () => {
                 Receive donations or offer rewards for crowdfunding support.
               </p>
             </div>
-            {/* Step 3 */}
+            {/* Step 03 */}
             <div className="step-card text-center bg-white dark:bg-gray-700 dark:text-white shadow-md rounded-lg p-6">
-              <div className="step-number text-2xl font-bold text-blue-600 mb-4">
+              <div className="step-number text-2xl font-bold text-white-600mb-4">
                 3
               </div>
               <h3 className="text-xl font-semibold mb-2">Spread the Word</h3>
@@ -87,9 +88,9 @@ const RightPlace = () => {
                 Share your project to reach potential backers and supporters.
               </p>
             </div>
-            {/* Step 4 */}
+            {/* Step 04 */}
             <div className="step-card text-center bg-white dark:bg-gray-700 dark:text-white shadow-md rounded-lg p-6">
-              <div className="step-number text-2xl font-bold text-blue-600 mb-4">
+              <div className="step-number text-2xl font-bold text-white-600mb-4">
                 4
               </div>
               <h3 className="text-xl font-semibold mb-2">
@@ -103,9 +104,11 @@ const RightPlace = () => {
 
           {/* CTA Button */}
           <div className="mt-12">
-            <button className="bg-blue-600 text-white px-8 py-3 rounded-lg shadow hover:bg-blue-700 transition">
-              Get Started →
-            </button>
+            <Link to="/comingsoon">
+              <button className="transition rounded-lg px-8 py-3   bg-gradient-to-r from-[#031741] via-[#03d2fc] to-[#022d33] text-white  text-center font-extrabold">
+                Get Started →
+              </button>
+            </Link>
           </div>
         </div>
       </section>
