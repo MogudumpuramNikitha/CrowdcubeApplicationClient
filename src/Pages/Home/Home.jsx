@@ -10,8 +10,6 @@ import OurImpact from "./OurImpact";
 import RightPlace from "./RightPlace";
 import SuccessStoris from "./SuccessStoris";
 
-import { Fade } from "react-awesome-reveal";
-
 const Home = () => {
   const { apiUrl } = useContext(AppContext);
   const [campaigns, setCampaigns] = useState([]);
@@ -19,16 +17,18 @@ const Home = () => {
   // Fetch campaigns
   useEffect(() => {
     axios
-      .get(`${apiUrl}/api/campaigns?limit=6&status=running`)
+      .get(`${apiUrl}/api/campaigns`)
       .then((response) => {
         setCampaigns(response.data);
       })
-      .catch((error) => {
-        //console.error("Error fetching campaigns:", error);
-      });
+      .catch((error) => {});
   }, [apiUrl]);
 
-  //console.log(campaigns);
+  const activeCampaigns = campaigns.filter(
+    (campaign) => new Date(campaign.deadline) > new Date()
+  );
+  // Limit to 6 campaigns
+  const displayedCampaigns = activeCampaigns.slice(0, 6);
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 dark:text-white transition duration-300">
@@ -37,7 +37,10 @@ const Home = () => {
 
       {/* Running Campaign Section */}
 
-      <RunningCampaigns campaigns={campaigns}></RunningCampaigns>
+      <RunningCampaigns
+        key={displayedCampaigns._id}
+        campaigns={displayedCampaigns}
+      ></RunningCampaigns>
 
       {/* Our Impact */}
       <OurImpact />
