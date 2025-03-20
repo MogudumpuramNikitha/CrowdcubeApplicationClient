@@ -5,18 +5,16 @@ import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ContextProvider from "./Context/ContextProvider.jsx";
 import RoutersItems from "./Component/Router/Router.jsx";
+import ErrorBoundary from "./Component/ErrorBoundary/ErrorBoundary.jsx";
 
-const router = createBrowserRouter(RoutersItems, {
-  future: {
-    v7_startTransition: true,
-    v7_normalizeFormMethod: true,
-  },
-});
+const router = createBrowserRouter(RoutersItems);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ContextProvider>
-      <RouterProvider router={router} />
-    </ContextProvider>
+    <ErrorBoundary>
+      <ContextProvider>
+        <RouterProvider router={router} />
+      </ContextProvider>
+    </ErrorBoundary>
   </StrictMode>
 );
